@@ -1,106 +1,70 @@
-# parabank smoke test cases
+# ParaBank Smoke Test Cases
 
-## tc-01 verify login page opens
+## TC-01: Verify Login Page Loads
 
-steps:
-1. open https://parabank.parasoft.com/parabank/index.htm
+**Preconditions:** None
 
-expected result:
-login section is visible
-- username field
-- password field (input masked)
-- LOG IN button
-- "Forgot login info?" link
-- register link
----
+**Steps and Expected Results:**
 
-## tc-02 verify username field
-
-steps:
-1. locate username field
-2. enter text
-
-expected result:
-text appears in username field
+| Step | Expected Result |
+|------|-----------------|
+| 1. Open https://parabank.parasoft.com/parabank/index.htm | Login section is displayed |
+| 2. Verify Username field is present | Username field is visible and editable |
+| 3. Verify Password field is present | Password field is visible and has type="password" (input masked with dots/stars) |
+| 4. Verify LOG IN button is present | LOG IN button is visible and clickable |
+| 5. Verify "Forgot login info?" link is present | Link is visible |
+| 6. Verify "Register" link is present | Link is visible |
 
 ---
 
-## tc-03 verify password field
+## TC-02: Verify Successful Login
 
-steps:
-1. locate password field
-2. enter password
+**Preconditions:**
+- Test user exists in the system: username = "john", password = "demo"
+- Login page is open
 
-expected result:
-password characters are hidden
+**Steps and Expected Results:**
 
----
-
-## tc-04 verify login button(successful login)
-
-steps:
-1. enter valid username
-2. enter valid password
-3. click "log in"
-
-expected result:
-user is logged in
+| Step | Expected Result |
+|------|-----------------|
+| 1. Enter valid username "john" into Username field | "john" appears in the Username field |
+| 2. Enter valid password "demo" into Password field | Password characters are masked (dots/stars) |
+| 3. Click "LOG IN" button | User is redirected to Accounts Overview page. URL contains "overview". Welcome message with username is displayed. User is successfully logged in. |
 
 ---
 
-## tc-05 verify login button(failed login)
+## TC-03: Verify Failed Login (Invalid Credentials)
 
-steps:
-1. enter invalid username
-2. enter invalid password
-3. click "log in"
+**Preconditions:** Login page is open
 
-expected result:
-login fails
-user remains on login page
-error message is displayed
+**Steps and Expected Results:**
 
----
-## tc-06 verify empty fields validation
-
-steps:
-1. leave username field empty
-2. leave password field empty
-3. click "log in"
-
-expected result:
-login fails
-user remains on login page
-error message is displayed
+| Step | Expected Result |
+|------|-----------------|
+| 1. Enter invalid username "wronguser" into Username field | "wronguser" appears in the Username field |
+| 2. Enter invalid password "wrongpass" into Password field | Password characters are masked (dots/stars) |
+| 3. Click "LOG IN" button | User remains on login page. URL does NOT contain "overview". Error message is displayed: "The username and password could not be verified." |
 
 ---
 
-## tc-07 verify register link
+## TC-04: Verify Register Link
 
-steps:
-1. click "register"
+**Preconditions:** Login page is open
 
-expected result:
-registration page opens
+**Steps and Expected Results:**
 
----
-
-## tc-08 verify forgot login info
-
-steps:
-1. click "forgot login info?"
-
-expected result:
-password recovery page opens
+| Step | Expected Result |
+|------|-----------------|
+| 1. Click "Register" link | User is redirected to Registration page. URL contains "register". |
 
 ---
 
-## tc-09 verify enter key submission
+## TC-05: Verify Forgot Login Info Link
 
-steps:
-1. enter valid username
-2. enter valid password
-3. press "Enter" key instead of clicking button
+**Preconditions:** Login page is open
 
-expected result:
-user is logged in (same as clicking LOG IN button)
+**Steps and Expected Results:**
+
+| Step | Expected Result |
+|------|-----------------|
+| 1. Click "Forgot login info?" link | User is redirected to Customer Lookup page. URL contains "lookup". Page contains form for password recovery (First Name, Last Name, Address fields). |
